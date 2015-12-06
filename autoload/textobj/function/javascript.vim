@@ -87,9 +87,13 @@ endfunction
 
 function! s:function_range()
   let start = getpos('.')
+  "go to the end of line
+  call search('\v\n', 'W')
+
+  "go to function
   while search('\<function\>', 'bcW') != 0
     let b = getpos('.')
-
+    "go to function xxx (
     call search('\v<function>\s*\k*\s*\(', 'ceW')
     call s:jump_to_pair()
 
